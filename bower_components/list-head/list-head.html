@@ -1,0 +1,42 @@
+<link rel="import"  href="https://polygit2.appspot.com/components/polymer/polymer.html">
+<dom-module id="list-head">
+
+    <template>
+        <table>
+            <thead>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            </thead>
+        </table>
+    </template>
+
+    <script>
+        Polymer({
+            is: "list-head",
+
+            properties: {
+                user: String,
+                isHappy: Boolean,
+                rowCnt: {
+                    type: Number,
+                    readOnly: false,
+                    notify: true
+                },
+                dataSet: {
+                    
+                }
+            }
+
+        });
+    </script>
+
+</dom-module>
+
+<!--
+    [ 주요 기능 ]
+        - 목록 갯수 설정
+        - 데이터 타입 
+        - 확장 : 정렬같은 이벤트 매칭
+-->
