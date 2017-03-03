@@ -1,13 +1,17 @@
-<link rel="import"  href="https://polygit2.appspot.com/components/polymer/polymer.html">
+<link rel="import"  href="../polymer/polymer.html">
 <dom-module id="list-head">
 
     <template>
-        <table>
+        
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+        Head
+        <table class="w3-table w3-border">
             <thead>
-            <tr>
-                <th>Month</th>
-                <th>Savings</th>
-            </tr>
+                <tr>
+                <template is="dom-repeat" items="{{employees}}">
+                    <th>{{item.name}}</th>
+                </template>
+                </tr>            
             </thead>
         </table>
     </template>
@@ -16,19 +20,48 @@
         Polymer({
             is: "list-head",
 
-            properties: {
-                user: String,
-                isHappy: Boolean,
-                rowCnt: {
-                    type: Number,
-                    readOnly: false,
-                    notify: true
-                },
-                dataSet: {
-                    
-                }
-            }
+            // _dataSets:  { 
+            //         item: [
+            //             {name: "순번"}, 
+            //             {name: "제목"}, 
+            //             {name: "조회수."} 
+            //         ]
+            // },
 
+            // properties: {
+            //     // user: String,
+            //     // isHappy: Boolean,
+            //     // rowCnt: {
+            //     //     type: Number,
+            //     //     readOnly: false,
+            //     //     notify: true
+            //     // }
+            //     dataSet2: {
+            //         item: [
+            //             {name: "순번"}, 
+            //             {name: "제목"}, 
+            //             {name: "작성자"}, 
+            //             {name: "조회수"}
+            //         ]
+            //     }
+            // },
+            ready: function() {
+                this.dataSet = { 
+                    item: [
+                        {name: "순번"}, 
+                        {name: "제목"}, 
+                        {name: "작성자"}, 
+                        {name: "조회수"} 
+                    ]
+                };
+                this.employees = [
+                        {name: "순번"}, 
+                        {name: "제목"}, 
+                        {name: "작성자"}, 
+                        {name: "조회수"} 
+                ];
+                // this.dataSet = _dataSets;
+            }
         });
     </script>
 
