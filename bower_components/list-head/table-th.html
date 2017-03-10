@@ -1,0 +1,27 @@
+<link rel="import"  href="../polymer/polymer.html">
+
+<dom-module id="table-th">
+    <template>
+        <!--<th id="inner">item.name</th>-->
+        <p>item</p>
+    </template>        
+    <script>
+
+      Polymer({
+        is: 'table-th',
+        ready: function() {
+            this.employees = [
+                    {name: "순번"}, 
+                    {name: "제목"}, 
+                    {name: "작성자"}, 
+                    {name: "조회수"} 
+            ];
+            // this.dataSet = _dataSets;
+            // this.textContent = "Aaa";
+            console.log('table-th');
+        }        
+
+      });
+
+    </script>        
+</dom-module>    

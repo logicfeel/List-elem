@@ -1,19 +1,114 @@
 <link rel="import"  href="../polymer/polymer.html">
+
+<dom-module id="table-th">
+    <template>
+        <th id="inner">item.name</th>
+    </template>        
+
+    <script>
+    var templDefine = templDefine || {};
+    templDefine.table_th = {
+        version: "1.0.0",
+        selector: [
+            {
+                desc: "기본선택자",
+                prefix: "#inner"
+            },
+            {
+                desc: "부모 요소",
+                prefix: "th"
+            }
+        ]
+    };
+
+
+    Polymer({
+        is: 'table-th',
+        ready: function() {
+            this.employees = [
+                    {name: "순번"}, 
+                    {name: "제목"}, 
+                    {name: "작성자"}, 
+                    {name: "조회수"} 
+            ];
+            // this.dataSet = _dataSets;
+            // this.textContent = "Aaa";
+            console.log('table-th');
+        }        
+
+    });
+    </script>        
+
+</dom-module>  
+
+
 <dom-module id="list-head">
 
     <template>
-        
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
         Head
-        <table class="w3-table w3-border">
+        <table class="w3-table w3-table-all">
             <thead>
-                <tr>
+                <tr id="tr_add">
+
+                <!--REVIEW: dom-repeat ie 이슈로 우회-->
+                <!--<template is="dom-repeat" items="{{employees}}">
+                    <th> {{item.name}} </th>
+                </template>-->
+                
+                <!--<table-th></table-th>
+                <table-th></table-th>
+                <table-th></table-th>-->
+
+                <!--<template id="tmp_th">
+                    <th id="inner"> {{item.name}} </th>
+                </template>-->
+
+                <!--<th>
                 <template is="dom-repeat" items="{{employees}}">
-                    <th>{{item.name}}</th>
+                    <div>,{{item.name}}</div>
                 </template>
-                </tr>            
+                </th>-->
+                
+                <!--<template is="dom-repeat" items="{{employees}}" filter="isEngineer" >
+                    <th>
+                    <div>[[item.name]]</div>
+                    </th>
+                </template>-->
+
+                <!--<template is="dom-repeat" items="[[employees]]" filter="isEngineer" >
+                    <div>[[item.name]]</div>
+                </template>-->
+                
+                <!--<template id="template-th">
+                    <th>{{item.name}}</th>
+                </template>-->
+                <!--<dom-repeat items="{{employees}}">
+                    <template>
+                    <th>{{items.name}}</th>
+                    </template>
+                </dom-repeat>-->
+                 
+                 </tr> 
             </thead>
+            <!--<tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>-->
         </table>
+
+        <!--table ie11 문제로 테스트-->
+        <!--<table class="w3-table w3-border">
+                <tr>
+                    <td>
+                    <template is="dom-repeat" items="{{employees}}">
+                        <div>{{item.name}}</div>
+                    </template>
+                    </td>
+                </tr>            
+        </table>-->
+        
     </template>
 
     <script>
@@ -46,14 +141,14 @@
             //     }
             // },
             ready: function() {
-                this.dataSet = { 
-                    item: [
-                        {name: "순번"}, 
-                        {name: "제목"}, 
-                        {name: "작성자"}, 
-                        {name: "조회수"} 
-                    ]
-                };
+                // this.dataSet = { 
+                //     item: [
+                //         {name: "순번"}, 
+                //         {name: "제목"}, 
+                //         {name: "작성자"}, 
+                //         {name: "조회수"} 
+                //     ]
+                // };
                 this.employees = [
                         {name: "순번"}, 
                         {name: "제목"}, 
@@ -61,6 +156,41 @@
                         {name: "조회수"} 
                 ];
                 // this.dataSet = _dataSets;
+
+                
+                // !! 테이블 관련 템플릿에 대해서는 polymer 1.x 와 IE11 버전 문제로
+                // 객체 생성 방식으로 우회함
+                var tr_add = Polymer.dom(this.$.tr_add);
+                [].forEach.call(
+                    this.employees, 
+                    function(value, index, arr) {
+                        var th = document.createElement('th');
+                        th.innerText = value.name;
+                        tr_add.appendChild(th);
+                });
+
+
+                this._dom_th();
+            },
+
+            _dom_th: function() {
+                //var temp = $$("template-th");
+
+                // var t = document.querySelector('#tmp_th');
+
+                // var c = t.content;
+
+                // var th = c.querySelector('th');
+
+                //c.textContent = 'logo.png';
+
+                console.log('_dom_th');
+            },
+
+            isEngineer: function(item) {
+                console.log(item.name);
+                return true;
+                // return item.name == '조회수';
             }
         });
     </script>

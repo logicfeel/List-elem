@@ -1,0 +1,95 @@
+<script>
+    var cAPI = cAPI || {};
+    
+    // HTML 개별 요소 최상위
+    function Container() {
+    }
+
+    function HTML() {
+    }
+
+    function Customs() {
+    }
+
+    function Forms() {
+    }
+
+    function Contents() {
+    }
+
+    function Structure() {
+    }
+
+    function Documents() {
+    }
+
+    function Lists() {
+    }
+
+    function Texts() {
+    }
+
+    function Tables() {
+    }
+
+    function table_c() {
+    }
+
+/*
+    - 리스트 표시 갯수
+    - 선택 페이지
+    - 링크 경로 (내부 파라메터 이름:값 설정, get/post 설정)
+    
+    - 버튼ID : 
+        + 등록 => 메소드 지정
+        + 검색 => 메소드 지정
+    - 가로 갯수 (테이블)
+    - 데이터 바인딩 (경로, 파라메터명:값)
+    - 뷰 바인딩 : 각각 항목별 매칭
+    - 코드 -> 명칭 변환
+
+    - PK idx명
+
+
+##############################################
+
+    <table-c-list 
+        
+        [listCnt="10"]
+        [selPage="1"]
+        linkUrl="View.html"
+
+        binding=""
+
+    ></table-c-list>
+
+*/
+    var boardBind = {
+        DataSet: {
+            head: [null],
+            row: [1, 2, 4]
+        }, 
+        event: [
+            {btn_Insert: "#btn_Insert"},
+            {btn_Search: "#btn_Search"},
+        ]
+    };
+
+    // DataSet 은 작을수도 있지만, 필요할 경우 모두 노출할 경우도 생각해야 함
+
+</script>
+
+<table-c-list listCnt="10" selPage="1" linkUrl="View.html" binding="boardBind"></table-c-list>
+<script>
+    var el = document.querySelector('table-c-list');
+    el.binding = [1, 2, 3];
+    el.bind(boardBind);     // 함수로 전달한 경우
+    //el.linkUrl = "";
+    //el.linkUrlBind = "LoanPrt_Frm.asp";
+
+
+    // binding 방법
+    // 1. 배열 변수명 지정
+    // 2. url 경로 설정 (파일로 분리)   * iron 에서 이용
+    // 3. 함수명 지정
+</script>
